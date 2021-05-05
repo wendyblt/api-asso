@@ -21,6 +21,13 @@ class Address
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $address_1;
+
+    /**
      * @ORM\Column(type="string", length=5)
      *
      * @var string
