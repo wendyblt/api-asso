@@ -22,16 +22,10 @@ class Team
      */
     private $id;
 
-
     /**
      * @ORM\OneToOne(targetEntity=Project::class)
      */
     private $project;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Association::class)
-     */
-    private $association;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Team", mappedBy="user")
