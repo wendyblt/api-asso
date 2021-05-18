@@ -38,7 +38,7 @@ class Category
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Projet", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="category")
      *
      * @var Collection
      */
