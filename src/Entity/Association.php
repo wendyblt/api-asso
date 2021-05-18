@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,7 +37,7 @@ class Association
     private $phoneNumber;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      *
      * @var string
      */
@@ -51,11 +52,9 @@ class Association
     private $password;
 
     /**
-     * @ORM\Column(type="integer")
-     *
-     * @var integer
+     * @ORM\OneToOne(targetEntity=Address::class)
      */
-    private $adresseId;
+    private $address;
 
     /**
      * @return mixed
@@ -64,11 +63,6 @@ class Association
     {
         return $this->id;
     }
-
-    /**
-     * @param mixed $id
-     * @return Association
-     */
 
     /**
      * @return string
@@ -143,22 +137,28 @@ class Association
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getAdresseId(): int
+    public function getAddress()
     {
-        return $this->adresseId;
+        return $this->address;
     }
 
     /**
-     * @param int $adresseId
+     * @param mixed $address
      * @return Association
      */
-    public function setAdresseId(int $adresseId): Association
+    public function setAddress($address)
     {
-        $this->adresseId = $adresseId;
+        $this->address = $address;
         return $this;
     }
+
+    /**
+     * @param mixed $id
+     * @return Association
+     */
+
 
 }
 

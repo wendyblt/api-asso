@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  */
-#[ApiResource()]
+#[ApiResource]
 class Address
 {
     /**
@@ -33,7 +33,6 @@ class Address
      * @var string
      */
     private $city;
-
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -77,26 +76,6 @@ class Address
     public function setStreet(string $street): Address
     {
         $this->street = $street;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPostalCode(): string
-    {
-        return $this->postalCode;
-    }
-
-    /**
-     * @param string $postalCode
-     *
-     * @return Address
-     */
-    public function setPostalCode(string $postalCode): Address
-    {
-        $this->postalCode = $postalCode;
-
         return $this;
     }
 
@@ -151,6 +130,24 @@ class Address
     public function setCountry(string $country): Address
     {
         $this->country = $country;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostalCode(): string
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param string $postalCode
+     * @return Address
+     */
+    public function setPostalCode(string $postalCode): Address
+    {
+        $this->postalCode = $postalCode;
         return $this;
     }
 

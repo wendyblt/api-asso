@@ -58,19 +58,16 @@ class User
      */
     private $password;
 
-    /**
-     * @ORM\Column(type="integer")
-     *
-     * @var integer
-     */
-    private $adresseId;
 
     /**
-     * @ORM\Column(type="integer", length=50, nullable=true)
-     *
-     * @var integer
+     * @ORM\OneToOne(targetEntity=Address::class)
      */
-    private $teamId;
+    private $address;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Team::class)
+     */
+    private $team;
 
     /**
      * @return mixed
@@ -79,11 +76,6 @@ class User
     {
         return $this->id;
     }
-
-    /**
-     * @param mixed $id
-     * @return Category
-     */
 
     /**
      * @return string
@@ -95,9 +87,9 @@ class User
 
     /**
      * @param string $firstName
-     * @return Category
+     * @return User
      */
-    public function setFirstName(string $firstName): Category
+    public function setFirstName(string $firstName): User
     {
         $this->firstName = $firstName;
         return $this;
@@ -113,9 +105,9 @@ class User
 
     /**
      * @param string $lastName
-     * @return Category
+     * @return User
      */
-    public function setLastName(string $lastName): Category
+    public function setLastName(string $lastName): User
     {
         $this->lastName = $lastName;
         return $this;
@@ -131,9 +123,9 @@ class User
 
     /**
      * @param string $phoneNumber
-     * @return Category
+     * @return User
      */
-    public function setPhoneNumber(string $phoneNumber): Category
+    public function setPhoneNumber(string $phoneNumber): User
     {
         $this->phoneNumber = $phoneNumber;
         return $this;
@@ -149,9 +141,9 @@ class User
 
     /**
      * @param string $email
-     * @return Category
+     * @return User
      */
-    public function setEmail(string $email): Category
+    public function setEmail(string $email): User
     {
         $this->email = $email;
         return $this;
@@ -167,47 +159,47 @@ class User
 
     /**
      * @param string $password
-     * @return Category
+     * @return User
      */
-    public function setPassword(string $password): Category
+    public function setPassword(string $password): User
     {
         $this->password = $password;
         return $this;
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getAdresseId(): int
+    public function getAddress()
     {
-        return $this->adresseId;
+        return $this->address;
     }
 
     /**
-     * @param int $adresseId
-     * @return Category
+     * @param mixed $address
+     * @return User
      */
-    public function setAdresseId(int $adresseId): Category
+    public function setAddress($address)
     {
-        $this->adresseId = $adresseId;
+        $this->address = $address;
         return $this;
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getTeamId(): int
+    public function getTeam()
     {
-        return $this->teamId;
+        return $this->team;
     }
 
     /**
-     * @param int $teamId
-     * @return Category
+     * @param mixed $team
+     * @return User
      */
-    public function setTeamId(int $teamId): Category
+    public function setTeam($team)
     {
-        $this->teamId = $teamId;
+        $this->team = $team;
         return $this;
     }
 

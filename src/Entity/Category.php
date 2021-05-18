@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,11 +30,24 @@ class Category
     private $categoryName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      *
      * @var string
      */
     private $description;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Projet", mappedBy="category")
+     *
+     * @var Collection
+     */
+    private $projects;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -75,6 +90,24 @@ class Category
     public function setDescription(string $description): Category
     {
         $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param Collection $projects
+     * @return Category
+     */
+    public function setProjects(Collection $projects): Category
+    {
+        $this->projects = $projects;
         return $this;
     }
 
