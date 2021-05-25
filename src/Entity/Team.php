@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  */
-#[ApiResource]
+#[ApiResource()]
 class Team
 {
     /**
@@ -21,19 +23,23 @@ class Team
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     *
-     * @var int
+     * @ORM\OneToOne(targetEntity=Project::class)
      */
-    private $projectId;
+    private $project;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Team", mappedBy="user")
      *
-     * @var int
+     * @var Collection
      */
-    private $userId;
+    private $users;
 
+
+    public function __construct()
+    {
+
+        $this->users = new ArrayCollection();
+    }
     /**
      * @return mixed
      */

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  */
-#[ApiResource]
+#[ApiResource()]
 class State
 {
     /**
@@ -52,4 +52,5 @@ class State
         $this->stateName = $stateName;
         return $this;
     }
+
 }

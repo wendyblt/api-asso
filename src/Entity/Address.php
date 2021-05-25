@@ -6,6 +6,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\OneToOne;
 
 /**
  * @ORM\Entity
@@ -34,7 +36,6 @@ class Address
      */
     private $city;
 
-
     /**
      * @ORM\Column(type="string", length=255)
      *
@@ -57,6 +58,12 @@ class Address
      */
     private $postalCode;
 
+    /**
+     * @OneToOne(targetEntity="User", inversedBy="address")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
     public function getId(): int
     {
         return $this->id;
@@ -77,26 +84,6 @@ class Address
     public function setStreet(string $street): Address
     {
         $this->street = $street;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPostalCode(): string
-    {
-        return $this->postalCode;
-    }
-
-    /**
-     * @param string $postalCode
-     *
-     * @return Address
-     */
-    public function setPostalCode(string $postalCode): Address
-    {
-        $this->postalCode = $postalCode;
-
         return $this;
     }
 
@@ -153,5 +140,42 @@ class Address
         $this->country = $country;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getPostalCode(): string
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param string $postalCode
+     * @return Address
+     */
+    public function setPostalCode(string $postalCode): Address
+    {
+        $this->postalCode = $postalCode;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     * @return Address
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
 
 }
