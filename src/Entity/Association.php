@@ -8,6 +8,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToOne;
 
 /**
  * @ORM\Entity
@@ -53,7 +54,7 @@ class Association
     private $password;
 
     /**
-     * @ORM\OneToOne(targetEntity=Address::class)
+     * @OneToOne(targetEntity="Address", mappedBy="association")
      */
     private $address;
 
@@ -77,7 +78,7 @@ class Association
     {
         return $this->id;
     }
-
+    
     /**
      * @return string
      */
@@ -169,10 +170,22 @@ class Association
     }
 
     /**
-     * @param mixed $id
+     * @return Collection
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param Collection $projects
      * @return Association
      */
-
+    public function setProjects(Collection $projects): Association
+    {
+        $this->projects = $projects;
+        return $this;
+    }
 
 }
 

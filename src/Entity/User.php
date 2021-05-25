@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToOne;
 
 /**
  * @ORM\Entity
@@ -60,7 +61,7 @@ class User
 
 
     /**
-     * @ORM\OneToOne(targetEntity=Address::class)
+     * @OneToOne(targetEntity="Address", mappedBy="user")
      */
     private $address;
 

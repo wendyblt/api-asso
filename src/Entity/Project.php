@@ -8,6 +8,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToOne;
 
 /**
  * @ORM\Entity
@@ -29,10 +30,12 @@ class Project
      */
     private $name;
 
+
     /**
-     * @ORM\OneToOne(targetEntity=Association::class)
+     * @ManyToOne(targetEntity="Association", inversedBy="projects")
+     * @JoinColumn(name="project_id", referencedColumnName="id")
      */
-    protected $association;
+    private $assocoiation;
 
     /**
      * @ORM\Column(type="text")
@@ -42,15 +45,14 @@ class Project
     private $description;
 
     /**
-     * @ORM\OneToOne(targetEntity=State::class)
+     * @OneToOne(targetEntity="State")
+     * @JoinColumn(name="state_id", referencedColumnName="id")
      */
-    protected $state;
+    private $state;
 
     /**
-     * @ManyToOne(targetEntity="App\Entity\Category", inversedBy="projects")
-     * @JoinColumn(name="category_id", referencedColumnName="id")
-     *
-     * @var Category
+     * @ManyToOne(targetEntity="Category", inversedBy="projects")
+     * @JoinColumn(name="project_id", referencedColumnName="id")
      */
     private $category;
 
@@ -89,18 +91,18 @@ class Project
     /**
      * @return mixed
      */
-    public function getAssociation()
+    public function getAssocoiation()
     {
-        return $this->association;
+        return $this->assocoiation;
     }
 
     /**
-     * @param mixed $association
+     * @param mixed $assocoiation
      * @return Project
      */
-    public function setAssociation($association)
+    public function setAssocoiation($assocoiation)
     {
-        $this->association = $association;
+        $this->assocoiation = $assocoiation;
         return $this;
     }
 
@@ -141,18 +143,18 @@ class Project
     }
 
     /**
-     * @return Category
+     * @return mixed
      */
-    public function getCategory(): Category
+    public function getCategory()
     {
         return $this->category;
     }
 
     /**
-     * @param Category $category
+     * @param mixed $category
      * @return Project
      */
-    public function setCategory(Category $category): Project
+    public function setCategory($category)
     {
         $this->category = $category;
         return $this;
@@ -175,7 +177,6 @@ class Project
         $this->team = $team;
         return $this;
     }
-
 
 }
 

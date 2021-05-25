@@ -6,6 +6,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\OneToOne;
 
 /**
  * @ORM\Entity
@@ -55,6 +57,12 @@ class Address
      * @var string
      */
     private $postalCode;
+
+    /**
+     * @OneToOne(targetEntity="User", inversedBy="address")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
     public function getId(): int
     {
@@ -150,5 +158,24 @@ class Address
         $this->postalCode = $postalCode;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     * @return Address
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
 
 }

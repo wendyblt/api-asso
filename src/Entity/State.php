@@ -52,4 +52,5 @@ class State
         $this->stateName = $stateName;
         return $this;
     }
+
 }

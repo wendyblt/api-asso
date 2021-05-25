@@ -8,6 +8,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * @ORM\Entity
@@ -27,7 +28,7 @@ class Category
      *
      * @var string
      */
-    private $categoryName;
+    private $name;
 
     /**
      * @ORM\Column(type="text")
@@ -38,9 +39,7 @@ class Category
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Project", mappedBy="category")
-     *
-     * @var Collection
+     * @OneToMany(targetEntity="Project", mappedBy="category")
      */
     private $projects;
 
@@ -60,18 +59,18 @@ class Category
     /**
      * @return string
      */
-    public function getCategoryName(): string
+    public function getName(): string
     {
-        return $this->categoryName;
+        return $this->name;
     }
 
     /**
-     * @param string $categoryName
+     * @param string $name
      * @return Category
      */
-    public function setCategoryName(string $categoryName): Category
+    public function setName(string $name): Category
     {
-        $this->categoryName = $categoryName;
+        $this->name = $name;
         return $this;
     }
 
@@ -94,18 +93,18 @@ class Category
     }
 
     /**
-     * @return Collection
+     * @return ArrayCollection
      */
-    public function getProjects(): Collection
+    public function getProjects(): ArrayCollection
     {
         return $this->projects;
     }
 
     /**
-     * @param Collection $projects
+     * @param ArrayCollection $projects
      * @return Category
      */
-    public function setProjects(Collection $projects): Category
+    public function setProjects(ArrayCollection $projects): Category
     {
         $this->projects = $projects;
         return $this;

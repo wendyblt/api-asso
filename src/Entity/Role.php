@@ -25,7 +25,7 @@ class Role
      *
      * @var string
      */
-    private $roleName;
+    private $label;
 
     /**
      * @return mixed
@@ -38,19 +38,20 @@ class Role
     /**
      * @return string
      */
-    public function getRoleName(): string
+    public function getLabel(): string
     {
-        return $this->roleName;
+        return $this->label;
     }
 
     /**
-     * @param string $roleName
+     * @param string $label
      * @return Role
      */
-    public function setRoleName(string $roleName): Role
+    public function setLabel(string $label): Role
     {
-        $this->roleName = $roleName;
+        $this->label = $label;
         return $this;
     }
+
 
 }
