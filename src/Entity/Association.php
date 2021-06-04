@@ -59,15 +59,12 @@ class Association
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="Project", mappedBy="association")
-     *
-     * @var Collection
+     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="association")
      */
     private $projects;
 
     public function __construct()
     {
-
         $this->projects = new ArrayCollection();
     }
 
