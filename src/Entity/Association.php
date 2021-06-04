@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToOne;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
@@ -21,6 +22,7 @@ class Association
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
+    #[Groups(['read:Project'])]
     private $id;
 
 
@@ -29,6 +31,7 @@ class Association
      *
      * @var string
      */
+    #[Groups(['read:collection','bisou'])]
     private $name;
 
     /**

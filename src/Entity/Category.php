@@ -25,6 +25,7 @@ class Category
 
     #[Groups(['read:Project', 'bisou'])]
     private $id;
+
     /**
      * @ORM\Column(type="string", length=20)
      *
