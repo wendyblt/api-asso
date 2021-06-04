@@ -64,6 +64,12 @@ class Address
      */
     private $user;
 
+    /**
+     * @OneToOne(targetEntity="Association", inversedBy="address")
+     * @JoinColumn(name="association_id", referencedColumnName="id")
+     */
+    private $association;
+
     public function getId(): int
     {
         return $this->id;
@@ -177,5 +183,22 @@ class Address
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAssociation()
+    {
+        return $this->association;
+    }
+
+    /**
+     * @param mixed $association
+     * @return Address
+     */
+    public function setAssociation($association)
+    {
+        $this->association = $association;
+        return $this;
+    }
 
 }
