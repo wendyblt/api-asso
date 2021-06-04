@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
@@ -21,13 +22,15 @@ class Category
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
 
+    #[Groups(['read:Project', 'bisou'])]
+    private $id;
     /**
      * @ORM\Column(type="string", length=20)
      *
      * @var string
      */
+    #[Groups(['read:Project', 'bisou'])]
     private $name;
 
     /**
@@ -37,9 +40,8 @@ class Category
      */
     private $description;
 
-
     /**
-     * @OneToMany(targetEntity="Project", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="category")
      */
     private $projects;
 
@@ -93,18 +95,18 @@ class Category
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getProjects(): ArrayCollection
+    public function getProjects(): Collection
     {
         return $this->projects;
     }
 
     /**
-     * @param ArrayCollection $projects
+     * @param Collection $projects
      * @return Category
      */
-    public function setProjects(ArrayCollection $projects): Category
+    public function setProjects(Collection $projects): Category
     {
         $this->projects = $projects;
         return $this;

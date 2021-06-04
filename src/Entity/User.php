@@ -66,6 +66,7 @@ class User
     private $address;
 
     /**
+     * @ORM\JoinColumn(name="team_id", nullable=true)
      * @ORM\OneToOne(targetEntity=Team::class)
      */
     private $team;

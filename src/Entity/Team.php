@@ -23,6 +23,7 @@ class Team
     private $id;
 
     /**
+     * @ORM\JoinColumn(name="project_id", nullable=true)
      * @ORM\OneToOne(targetEntity=Project::class)
      */
     private $project;
